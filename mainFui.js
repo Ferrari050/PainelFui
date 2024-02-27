@@ -15,22 +15,35 @@ let contador = 0;
 const pessoas = ["Teste1", "Teste2","Teste3","Teste4","Teste5","Teste6"];
 
 while (contador < pessoas.length) {
-    const meuElemento = document.getElementById(pessoas[contador]);
+    const pessoaId = document.getElementById(pessoas[contador]);
     const botaoPlantonista = document.getElementById(`button.${pessoas[contador]}`);
     const nomePlantonista = document.getElementById(`nome.${pessoas[contador]}`);
 
+    if (pessoaId.classList.contains('plantonista')) {
+        pessoaId.classList.add('contornoVermelho');
+        botaoPlantonista.classList.add('botaoVermelho');
+        nomePlantonista.classList.add('nomeVermelho');
+    } else {
+        pessoaId.classList.remove('contornoVermelho');
+        botaoPlantonista.classList.remove('botaoVermelho');
+        nomePlantonista.classList.remove('nomeVermelho');
+    }
+
     botaoPlantonista.addEventListener('click', function () {
-        console.log(pessoas[contador]);
         if (botaoPlantonista.classList.contains('botaoVermelho')) {
-            meuElemento.classList.remove('contornoVermelho');
             botaoPlantonista.classList.remove('botaoVermelho');
-            nomePlantonista.classList.remove('nomeVermelho');
         } else {
-            meuElemento.classList.add('contornoVermelho');
             botaoPlantonista.classList.add('botaoVermelho');
-            nomePlantonista.classList.add('nomeVermelho');
         }
     });
+
+    var textoId = pessoaId.querySelector('.texto');
+    if(textoId.textContent.includes('férias') || textoId.textContent.includes('Férias')){
+        pessoaId.classList.remove('verde');
+        pessoaId.classList.remove('amarelo');
+        pessoaId.classList.add('deFerias');
+    }
+
     contador = contador + 1;
 }
 
